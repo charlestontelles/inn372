@@ -7,6 +7,14 @@
 		<servlet-name>TestGoogleApplication</servlet-name>
 		<url-pattern>/testgoogleapplication</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Guestbook</servlet-name>
+		<servlet-class>com.test.GuestbookServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Guestbook</servlet-name>
+		<url-pattern>/guestbook</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
