@@ -5,28 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Solar Power Calculator Login</title>
 <LINK href="<%=request.getContextPath()%>/css/greenhat_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <f:view>
-    <h:form styleClass="input">
-		<table style="width: 402px;" align="center">
-			<tr>
-				<td><h:outputText value="User"></h:outputText></td>
-				<td><h:inputText></h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputText value="Password"></h:outputText></td>
-				<td><h:inputText></h:inputText></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<h:commandButton action="equipment.jsp" value="Login"></h:commandButton>
-				</td>
-			</tr>
-		</table>
+    <h:form>
+		<h:panelGrid columns="2" styleClass="input">
+			<h:outputText value="User"></h:outputText>
+			<h:inputText value="charles@greenhat.com"></h:inputText>
+			
+			<h:outputText value="Password"></h:outputText>
+			<h:inputSecret value="123"></h:inputSecret>
+			
+			<h:outputText value=""></h:outputText>
+			<h:commandButton action="equipment.jsp" value="Login"></h:commandButton>
+		</h:panelGrid>
 	</h:form>
 </f:view>
 </body>

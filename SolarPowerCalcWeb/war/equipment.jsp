@@ -10,36 +10,25 @@
 </head>
 <body>
 <f:view>
-    <h:form styleClass="input">
-		<table style="width: 402px;" align="center">
-			<tr>
-				<td><h:outputText value="Cost"></h:outputText></td>
-				<td><h:inputText value="#{equipment.cost}"></h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputText value="Size"></h:outputText></td>
-				<td><h:inputText value="#{equipment.size}"></h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputText value="Number of Panels"></h:outputText></td>
-				<td>
-					<h:selectOneMenu validatorMessage="required">
-        				<f:selectItems value="#{calculatorController.panels}" />
-      				</h:selectOneMenu>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
-					<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				</td>
-			</tr>
-			<tr>
-				<td>Result</td>
-				<td><h:outputText value="#{calculator.result}"></h:outputText></td>
-			</tr>
-		</table>
+    <h:form >
+		<h:panelGrid columns="2" styleClass="input">
+			<h:outputText value="Cost"></h:outputText>
+			<h:inputText value="#{equipment.cost}"></h:inputText>
+			
+			<h:outputText value="Size"></h:outputText>
+			<h:inputText value="#{equipment.size}"></h:inputText>
+			
+			<h:outputText value="Number of Panels"></h:outputText>
+			<h:selectOneMenu validatorMessage="required">
+  				<f:selectItems value="#{calculatorController.panels}" />
+			</h:selectOneMenu>
+				
+			<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
+			<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				
+			<h:outputText value="Result"></h:outputText>
+			<h:outputText value="#{calculator.result}"></h:outputText>			
+		</h:panelGrid>
 	</h:form>
 </f:view>
 </body>
