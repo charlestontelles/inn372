@@ -10,7 +10,7 @@
 </head>
 <body>
 <f:view>
-    <h:form >
+    <h:form>
 		<h:panelGrid columns="2" styleClass="input">
 			<h:outputText value="Cost"></h:outputText>
 			<h:inputText value="#{equipment.cost}"></h:inputText>
