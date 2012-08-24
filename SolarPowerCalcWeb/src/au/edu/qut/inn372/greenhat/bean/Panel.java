@@ -39,6 +39,4 @@ public class Panel implements Serializable {
 	public void setHeight(double height) {
 		this.height = height;
 	}
-	
-
 }
