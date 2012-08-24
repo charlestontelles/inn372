@@ -36,5 +36,8 @@ public class Calculator implements Serializable {
 		this.result = equipment.getCost() * equipment.getSize();
 	}
 	
+	public double getAnnualPower(){
+		return getResult() * 365;
+	}
 	
 }
