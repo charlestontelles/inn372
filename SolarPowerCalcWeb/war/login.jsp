@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Solar Power Calculator Login</title>
+<title>Solar Calculator -&gt; Login</title>
 <LINK href="<%=request.getContextPath()%>/css/greenhat_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -19,7 +19,10 @@
 			<h:inputSecret value="123"></h:inputSecret>
 			
 			<h:outputText value=""></h:outputText>
-			<h:commandButton action="equipment.jsp" value="Login"></h:commandButton>
+			<h:commandButton action="input.jsp" value="Login"></h:commandButton>
+			
+			<h:outputText value="New User?"></h:outputText>
+			<h:outputLink>register</h:outputLink>
 		</h:panelGrid>
 	</h:form>
 </f:view>
