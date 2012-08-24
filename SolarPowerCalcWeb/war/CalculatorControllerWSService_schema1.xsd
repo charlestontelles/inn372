@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ws.greenhat.inn372.qut.edu.au/" xmlns:tns="http://ws.greenhat.inn372.qut.edu.au/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="calcEnergyProduction" type="tns:calcEnergyProduction"/>
+
+  <xs:element name="calcEnergyProductionResponse" type="tns:calcEnergyProductionResponse"/>
+
+  <xs:element name="saveCalculation" type="tns:saveCalculation"/>
+
+  <xs:element name="saveCalculationResponse" type="tns:saveCalculationResponse"/>
+
+  <xs:complexType name="calcEnergyProduction">
+    <xs:sequence>
+      <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculator">
+    <xs:sequence>
+      <xs:element name="equipment" type="tns:equipment" minOccurs="0"/>
+      <xs:element name="result" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="equipment">
+    <xs:sequence>
+      <xs:element name="cost" type="xs:double"/>
+      <xs:element name="panels" type="tns:panel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="size" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="panel">
+    <xs:sequence>
+      <xs:element name="height" type="xs:double"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element name="width" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calcEnergyProductionResponse">
+    <xs:sequence>
+      <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveCalculation">
+    <xs:sequence>
+      <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveCalculationResponse">
+    <xs:sequence>
+      <xs:element name="result" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

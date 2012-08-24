@@ -56,4 +56,12 @@
   <servlet-name>SystemServiceServlet</servlet-name>
   <url-pattern>/_ah/spi/*</url-pattern>
  </servlet-mapping>
+ 	<servlet>
+		<servlet-name>CalculatorSOAPServer</servlet-name>
+		<servlet-class>au.edu.qut.inn372.greenhat.ws.CalculatorSOAPServerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CalculatorSOAPServer</servlet-name>
+		<url-pattern>/calculatorsoapserver</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -39,5 +39,9 @@ public class Calculator implements Serializable {
 	public double getAnnualPower(){
 		return getResult() * 365;
 	}
+
+	public Equipment getEquipment() {
+		return equipment;
+	}
 	
 }
