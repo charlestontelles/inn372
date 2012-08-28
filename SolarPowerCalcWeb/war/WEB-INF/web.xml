@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee       http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
  
 	<display-name>JavaServerFaces</display-name>
  
@@ -17,7 +17,7 @@
  
 	<!-- Welcome page -->
 	<welcome-file-list>
-		<welcome-file>faces/login.jsp</welcome-file>
+		<welcome-file>faces/welcome.jsp</welcome-file>
 	</welcome-file-list>
  
 	<!-- JSF mapping -->
@@ -63,5 +63,14 @@
 	<servlet-mapping>
 		<servlet-name>CalculatorSOAPServer</servlet-name>
 		<url-pattern>/calculatorsoapserver</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>       
+		<servlet-name>authentication</servlet-name>        
+		<servlet-class>au.edu.qut.inn372.greenhat.bean.AuthenticationServlet</servlet-class>    
+	</servlet>    
+	<servlet-mapping>        
+	    <servlet-name>authentication</servlet-name>        
+	    <url-pattern>/authentication</url-pattern>    
 	</servlet-mapping>
 </web-app>
