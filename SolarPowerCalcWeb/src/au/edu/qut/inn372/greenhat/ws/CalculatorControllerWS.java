@@ -34,7 +34,7 @@ public class CalculatorControllerWS {
 	@WebResult(name = "calculator") 
 	public Calculator calcEnergyProduction(@WebParam(name = "calculator") Calculator calculator){
 		this.calculator = calculator;
-		this.calculator.calculate();
+		this.calculator.calculateSolarPower();
 		return calculator;
 	}
 }

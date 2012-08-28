@@ -1,0 +1,141 @@
+<project name="SolarPowerCalcWeb" default="unitTests" basedir=".">
+  <property name="sdk.dir" location="/usr/local/share/google-appengine-javasdk1.7.0" />
+  
+  <property name="srcDir" value="${basedir}/src" />
+  <property name="testClasses" value="${basedir}/unit tests" />
+  <property name="testSrcDir" value="${basedir}/test" />
+  <property name="war" value="${basedir}/war" />
+  <property name="buildClasses" value="${war}/WEB-INF/classes" />
+  <property name="libDir" value="${war}/WEB-INF/lib" />
+  <property name="junitTestResultsDir" value="${basedir}/test output" />
+  <property name="unitTestOutput" value="${junitTestResultsDir}/junit-out" />
+  <property name="unitTestReport" value="${junitTestResultsDir}/output" />
+  <property name="junitZip" value="${junitTestResultsDir}/junitResults.zip" />
+  
+
+  <import file="${sdk.dir}/config/user/ant-macros.xml" />
+
+  <path id="project.classpath">
+    <pathelement path="${buildClasses}" />
+    <fileset dir="${libDir}">
+      <include name="**/*.jar" />
+    </fileset>
+    <fileset dir="${sdk.dir}/lib">
+      <include name="shared/**/*.jar" />
+    </fileset>
+  </path>
+
+  <target name="clean" description="Cleans out the working directory">
+	<delete dir="${testClasses}" />
+	<delete dir="${buildClasses}" />
+	<delete dir="${junitTestResultsDir}" />
+  </target>
+  
+  <target name="prepare" depends="clean" description="Prepares directories for building and testing">
+	<mkdir dir="${testClasses}" />
+	<mkdir dir="${buildClasses}" />
+	<mkdir dir="${junitTestResultsDir}" />
+	<mkdir dir="${unitTestOutput}" />
+	<mkdir dir="${unitTestReport}" />
+  </target>
+  
+  <target name="copyjars"
+      description="Copies the App Engine JARs to the WAR.">
+    <copy
+        todir="${libDir}"
+        flatten="true">
+      <fileset dir="${sdk.dir}/lib/user">
+        <include name="**/*.jar" />
+      </fileset>
+    </copy>
+  </target>
+  
+
+  <target name="compile" depends="copyjars,prepare"
+      description="Compiles Java source and copies other source files to the WAR.">
+    <copy todir="${buildClasses}">
+      <fileset dir="${srcDir}">
+        <exclude name="**/*.java" />
+      </fileset>
+    </copy>
+    <javac
+		includeantruntime="false"
+        srcdir="${srcDir}"
+        destdir="${buildClasses}"
+        classpathref="project.classpath"
+        debug="on" />
+  </target>
+  
+  <target name="compileTests" depends="compile" description=" Compile unit tests for all app engine classes">
+	<copy todir="${testClasses}">
+		<fileset dir="${testSrcDir}">
+			<exclude name="**/*.java" />
+		</fileset>
+	</copy>
+  <javac
+		includeantruntime="false"
+		srcdir="${testSrcDir}"
+		destdir="${testClasses}"
+		classpathref="project.classpath"
+		debug="on" />
+  </target>
+  
+  
+  <target name="unitTests" depends="compileTests" description="Run unit tests">
+	<junit printsummary="true" failureproperty="junit.failure">
+		<classpath>
+			<pathelement path="${buildClasses}" />
+			<fileset dir="${libDir}">
+			  <include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${sdk.dir}/lib">
+			  <include name="shared/**/*.jar" />
+			</fileset>
+			<pathelement path="${testClasses}" />
+		</classpath>
+		<batchtest todir="${unitTestOutput}">
+			<fileset dir="${testClasses}" />
+			<formatter type="xml" />
+		</batchtest>
+	</junit>
+	<junitreport todir="${unitTestReport}">
+		<fileset dir="${unitTestOutput}" />
+		<report todir="${unitTestReport}" />
+	</junitreport>
+	<zip destfile="${junitZip}" basedir="${unitTestReport}" />
+	<fail if="junit.failure" message="Junit Tests Failed - Aborting build" />
+  </target>
+  
+  <target name="datanucleusenhance" depends="unitTests"
+      description="Performs JDO enhancement on compiled data classes.">
+    <enhance_war war="${war}" />
+  </target>
+  
+  <target name="update" depends="datanucleusenhance"
+      description="Uploads the application to App Engine.">
+    <appcfg action="update" war="${war}" />
+  </target>
+
+  <target name="update_indexes" depends="datanucleusenhance"
+      description="Uploads just the datastore index configuration to App Engine.">
+    <appcfg action="update_indexes" war="${war}" />
+  </target>
+
+  <target name="rollback" depends="datanucleusenhance"
+      description="Rolls back an interrupted application update.">
+    <appcfg action="rollback" war="${war}" />
+  </target>
+
+  <target name="request_logs"
+      description="Downloads log data from App Engine for the application.">
+    <appcfg action="request_logs" war="${war}">
+      <options>
+        <arg value="--num_days=5"/>
+      </options>
+      <args>
+        <arg value="logs.txt"/>
+      </args>
+    </appcfg>
+  </target>
+
+</project>

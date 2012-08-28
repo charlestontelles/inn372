@@ -32,4 +32,132 @@ table .rest {
   width: 400px;
   }
   
+.footer, .push {
+	height: 4em;
+}
+
+
+
+
+
+
+body 
+{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-family: sans-serif ; 
+  background-color: green;
+}
+
+#header 
+{
+  height: 15%;
+  width: 100%;
+  background-color: White;
+}	
+
+
+#breadcrumb
+{
+  width: 99.5%;
+  height: 8%;
+  padding: 10px 0 10px 0; 
+  margin-left: 5px; 
+  color: White; 
+}
+
+#main
+{
+  height: 67% ; 
+  width: 100% ;
+}
+
+
+#menu
+{
+  height: 100%;
+  width: 15%;
+  Float: left;/* float rule needed here */
+  color: White; 
+}
+
+
+#content
+{
+  height: 100%; 
+  width: 84.5%;
+  /*background-color: #A47A7A; */ 
+  float: left; /* float rule needed here */
+  text-align: justify;
+  background-image:url('/faces/logo.gif');
+}
+
+
+#footer
+{
+  height: 10%;
+  width: 100%;
+  float: none; /* clear float rule needed here */
+  color: White;
+  text-align: justify;
+}
+
+#copyright
+{
+  float: left; /* float rule needed here */
+  margin: 10px 0 5px 5px;
+  padding-bottom: 5px;
+}
+
+#lastupdate
+{
+  float: right; /* float rule needed here */
+  margin: 10px 5px 5px 0;
+  padding-bottom: 5px;
+}
+
+.leftalign
+{
+  text-align: left; 
+}
+
+a:link
+{
+  color: #FFDA4D; /* color rule need here */
+}
+
+a:visited
+{
+  color: #FFFCD5; /* color rule need here */
+}
+
+a:hover
+{
+  color: Yellow; /* color rule need here */
+}
+
+p, #menu h2, #menu h3
+{
+  padding: 5px ;
+}
+
+.logoSize
+{
+    width: 100%;
+    height: 120px;
+}
+
+.fontWeight
+{
+    font-weight: bold;
+}
+
+.copyYourName
+{
+    font-style:italic;
+}
+  
+  
  
