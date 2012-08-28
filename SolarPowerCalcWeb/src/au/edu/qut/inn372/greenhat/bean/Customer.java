@@ -6,6 +6,7 @@ package au.edu.qut.inn372.greenhat.bean;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 
@@ -22,8 +23,13 @@ public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 7549990716571383217L;
 	
+	@ManagedProperty (value = "#{location}")
 	private Location location;
+	
+	@ManagedProperty (value = "#{tariff}")
 	private Tariff tariff;
+	
+	@ManagedProperty (value = "#{electricityUsage}")
 	private ElectricityUsage electricityUsage;
 	
 	public Location getLocation() {

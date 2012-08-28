@@ -24,19 +24,27 @@ public class ElectricityUsage implements Serializable{
 	
 	private double dailyAverageUsage;
 	private double dayTimeHourlyUsage;
-
+	/**
+	 * @return the dailyAverageUsage
+	 */
 	public double getDailyAverageUsage() {
 		return dailyAverageUsage;
 	}
-	
+	/**
+	 * @param dailyAverageUsage the dailyAverageUsage to set
+	 */
 	public void setDailyAverageUsage(double dailyAverageUsage) {
 		this.dailyAverageUsage = dailyAverageUsage;
 	}
-	
+	/**
+	 * @return the dayTimeHourlyUsage
+	 */
 	public double getDayTimeHourlyUsage() {
 		return dayTimeHourlyUsage;
 	}
-	
+	/**
+	 * @param dayTimeHourlyUsage the dayTimeHourlyUsage to set
+	 */
 	public void setDayTimeHourlyUsage(double dayTimeHourlyUsage) {
 		this.dayTimeHourlyUsage = dayTimeHourlyUsage;
 	}

@@ -18,30 +18,60 @@ public class Calculator implements Serializable {
 	
 	@ManagedProperty (value = "#{equipment}")
 	private Equipment equipment;
-	private double result;
-
-	public double getResult() {
-		return result;
+	
+	@ManagedProperty (value = "#{customer}")
+	private Customer customer;
+	
+	private double solarPower;
+	
+	/**
+	 * @return the customer
+	 */
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setResult(double result) {
-		this.result = result;
+	/**
+	 * @param customer the customer to set
+	 */
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public double getSolarPower() {
+		return solarPower;
+	}
+
+	public void setSolarPower(double solarPower) {
+		this.solarPower = solarPower;
 	}
 
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
 	
-	public void calculate(){
-		this.result = equipment.getCost() * equipment.getSize();
-	}
-	
-	public double getAnnualPower(){
-		return getResult() * 365;
-	}
-
 	public Equipment getEquipment() {
 		return equipment;
 	}
 	
+	public void calculateSolarPower(){
+		//this.result = equipment.getCost() * equipment.getSize();
+		Location location = new Location();
+		location = customer.getLocation();
+		this.solarPower = ((equipment.getSize() * location.getRoof().getPercentageNorth()
+				*(1-location.getRoof().getEfficiencyLossNorth()))
+					+(equipment.getSize()*location.getRoof().getEfficiencyLossWest()
+						*(1-location.getRoof().getEfficiencyLossWest())))
+							//*equipment.getPanels().get(1).getEfficiency()
+								*equipment.getInverter().getEfficiency()
+									*location.getSunLightHours();
+	}
+	
+	public double calculateNetSolarPower(){
+		return (this.solarPower - customer.getElectricityUsage().getDailyAverageUsage());
+	}
+	
+	public double calculateAnnualSolarPower(){
+		return getSolarPower() * 365;
+	}
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 /**
  * Bean that represents a Equipment
@@ -20,7 +21,22 @@ public class Equipment implements Serializable{
 	private double size;
 	private ArrayList<Panel> panels;
 	
+	@ManagedProperty (value = "#{inverter}")
+	private Inverter inverter;
+	
 
+	/**
+	 * @return the inverter
+	 */
+	public Inverter getInverter() {
+		return inverter;
+	}
+	/**
+	 * @param inverter the inverter to set
+	 */
+	public void setInverter(Inverter inverter) {
+		this.inverter = inverter;
+	}
 	public ArrayList<Panel> getPanels() {
 		return panels;
 	}
