@@ -8,7 +8,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -31,16 +30,14 @@ public class CalculatorController implements Serializable {
 		this.calculator = calculator;
 	}
 	
-	public void calcEnergyProduction(){
-		calculator.calculate();
-		nextPage("output.jsp");
+	public void calculateSolarPower(){
+		calculator.calculateSolarPower();
+		nextPage("output.jsp?annualPower="+calculator.calculateAnnualSolarPower()+"&netPower="+calculator.calculateNetSolarPower());
 	}
 
 	private void nextPage(String url) {
-		FacesContext fc = FacesContext.getCurrentInstance(); 
-		ExternalContext ec = fc.getExternalContext(); 
 		try { 
-		        ec.redirect(url); 
+			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
 		} catch (IOException ex) { 
 				System.out.println("Error displaying the page");
 		}
@@ -59,5 +56,4 @@ public class CalculatorController implements Serializable {
 		    list.add(new SelectItem(5, "5"));
 		    return list;
 	}
-
 }
