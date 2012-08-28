@@ -17,7 +17,7 @@
  
 	<!-- Welcome page -->
 	<welcome-file-list>
-		<welcome-file>faces/welcome.jsp</welcome-file>
+		<welcome-file>faces/login.jsp</welcome-file>
 	</welcome-file-list>
  
 	<!-- JSF mapping -->
@@ -63,14 +63,5 @@
 	<servlet-mapping>
 		<servlet-name>CalculatorSOAPServer</servlet-name>
 		<url-pattern>/calculatorsoapserver</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>       
-		<servlet-name>authentication</servlet-name>        
-		<servlet-class>au.edu.qut.inn372.greenhat.bean.AuthenticationServlet</servlet-class>    
-	</servlet>    
-	<servlet-mapping>        
-	    <servlet-name>authentication</servlet-name>        
-	    <url-pattern>/authentication</url-pattern>    
 	</servlet-mapping>
 </web-app>

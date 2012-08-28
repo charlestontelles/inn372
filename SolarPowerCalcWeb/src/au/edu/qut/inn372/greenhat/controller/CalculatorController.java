@@ -1,6 +1,5 @@
 package au.edu.qut.inn372.greenhat.controller;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
@@ -30,19 +28,11 @@ public class CalculatorController implements Serializable {
 		this.calculator = calculator;
 	}
 	
-	public void calculateSolarPower(){
+	public String calculateSolarPower(){
 		calculator.calculateSolarPower();
-		nextPage("output.jsp?annualPower="+calculator.calculateAnnualSolarPower()+"&netPower="+calculator.calculateNetSolarPower());
+		return "output";
 	}
 
-	private void nextPage(String url) {
-		try { 
-			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-		} catch (IOException ex) { 
-				System.out.println("Error displaying the page");
-		}
-	}
-	
 	public void saveCalculation(){
 		calculatorDAO.saveCalculation(calculator);
 	}
